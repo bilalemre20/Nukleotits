@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>adam.jpeg</file>
+  </qresource>
+</RCC>

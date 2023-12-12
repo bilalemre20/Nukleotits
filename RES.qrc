@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="images">
+    <file>../dna_gunu-min.jpg</file>
+    <file>../DNA2.jpg</file>
+    <file>../DNA RESİM.png</file>
+  </qresource>
+</RCC>
