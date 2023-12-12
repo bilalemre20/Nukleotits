@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 from LogIn_py import Ui_MainWindow
 import sys
+import nukleotit.py
 
 
 class LoginApp(QtWidgets.QMainWindow, Ui_MainWindow):
