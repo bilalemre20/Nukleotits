@@ -1,7 +1,9 @@
 def main():
     #thingToSearch = "gene=SLC6A9"
-    print("gene no 25:", getCategory('ncbi_dataset/ncbi_dataset/data/GCF_000001405.40/cds_from_genomic.fna', 25, "gene"))
-    printAllCategories('ncbi_dataset/ncbi_dataset/data/GCF_000001405.40/cds_from_genomic.fna')
+    file_path = "cds_from_genomic.fna"
+    print("gene no 25:", getCategory(file_path, 25, "gene"))
+    #printCategories(file_path, 25)
+    #printAllCategories(file_path)
 
 def printAllCategories(file_path):
     con = ""
@@ -49,8 +51,7 @@ def printCategories(file_path, num):
     with open(file_path, 'r') as file:
         lines = file.readlines()
         for line in lines:
-            if line.find(">lcl") != -1 and num != cycle:
-                counter1 = counter1 + 1
+            if line.find(">lcl") != -1 and num == cycle:
                 code1 = line.split(" ", 1)[0]
                 #print(code1)
                 gene = line.split("[")[1].replace(']', '')
@@ -60,8 +61,13 @@ def printCategories(file_path, num):
                 protein_id = line.split("[")[4].replace(']', '')
                 location = line.split("[")[5].replace(']', '')
                 gbkey = line.split("[")[6].replace(']', '')
+                break
+            
+            elif line.find(">lcl") != -1 and num != cycle:
                 cycle = cycle + 1
-    print('Line Number:', lines.index(line), "Code Number:", counter1)
+                counter1 = counter1 + 1
+                
+    print('Line Number:', lines.index(line) + 1, "Code Number:", counter1)
     print(code1, gene, db_xref, protein, protein_id, location, gbkey, sep="\n")
     file.close
     
@@ -70,7 +76,7 @@ def getCategory(file_path, num, var):
     with open(file_path, 'r') as file:
         lines = file.readlines()
         for line in lines:
-            if line.find(">lcl") != -1 and cycle != num:
+            if line.find(">lcl") != -1 and cycle == num:
                 code1 = line.split(" ", 1)[0]
                 #print(code1)
                 gene = line.split("[")[1].replace(']', '')
@@ -80,7 +86,12 @@ def getCategory(file_path, num, var):
                 protein_id = line.split("[")[4].replace(']', '')
                 location = line.split("[")[5].replace(']', '')
                 gbkey = line.split("[")[6].replace(']', '')
+                break
+
+            elif line.find(">lcl") != -1 and cycle != num:
                 cycle = cycle + 1
+
+            
     file.close
     if var == "code":
         return code1

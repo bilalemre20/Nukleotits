@@ -1,0 +1,2 @@
+-Currently the index return values imply the position among header numbers, could be switched to line numbers and thus it'd be possible to set search points to increase performance
+-Functions can be further seperated and specified so processes such as file reading can be done once, it'd require various return types (like if the file should be read as a whole or if the lines are supposed to be seperated in a list)

@@ -1,0 +1,1 @@
+-Add comments (As the project gets more complicated and keeps branching into more functions that are to work together, comments are becoming essential)
