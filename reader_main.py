@@ -1,9 +1,9 @@
 from reader_categorize import printAllCategories
 from reader_categorize import getCategory
 from reader_categorize import printCategories
-from reader_compare import printCompareGenome
-from reader_compare import printNucleotidNo
-from reader_compare import getNucleotidNo
+from reader_compare_test import printCompareGenome
+from reader_compare_test import printNucleotidNo
+from reader_compare_test import getNucleotidNo
 from reader_search import search_str
 
 fna_path = "cds_from_genomic.fna"

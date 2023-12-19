@@ -1,1 +1,2 @@
 -Add comments (As the project gets more complicated and keeps branching into more functions that are to work together, comments are becoming essential)
+-A searched value might exist in multiple instances so the user must be informed about how many results are found and which of these results they are interested in
