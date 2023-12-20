@@ -7,7 +7,7 @@ def main():
 
 def printAllCategories(file_path):
     con = ""
-    counter1 = 0d
+    counter1 = 0
     code1 = ""
     gene = ""
     db_xref = ""
