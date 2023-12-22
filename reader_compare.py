@@ -5,7 +5,7 @@ from Bio.Align import PairwiseAligner
 def main():
     file_path = "cds_from_genomic.fna"
     #getDiff(file_path, makeSingleString(file_path, 3), makeSingleString(file_path, 4), 0, 0, False)
-    print(f"Similarity rate: {getDiff(makeSingleString(file_path, 2), makeSingleString(file_path, 6)):.2f}%")
+    print(f"Similarity rate: {getDiff(2, 6, file_path):.2f}%")
     
 
 def makeSingleString(file_path, input1):
@@ -65,9 +65,9 @@ def makeSingleString(file_path, input1):
         if input1[0] != input2[_]:
             input1.replace(input1[0], '', 1)
             
-def getDiff(gene1, gene2):
-    gene1obj = Seq(gene1)
-    gene2obj = Seq(gene2)
+def getDiff(gene1no, gene2no, file_path):
+    gene1obj = Seq(makeSingleString(file_path, gene1no))
+    gene2obj = Seq(makeSingleString(file_path, gene2no))
 
     #alignments = pairwise2.align.globalxx(gene1, gene2)
     aligner = PairwiseAligner()
