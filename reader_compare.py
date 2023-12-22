@@ -1,10 +1,11 @@
 from Bio import pairwise2
 from Bio.Seq import Seq
+#from Bio.Align import PairwiseAligner
 
 def main():
     file_path = "cds_from_genomic.fna"
     #getDiff(file_path, makeSingleString(file_path, 3), makeSingleString(file_path, 4), 0, 0, False)
-    print(f"Similarity rate: {getDiff(makeSingleString(file_path, 3), makeSingleString(file_path, 4)):.2f}%")
+    print(f"Similarity rate: {getDiff(makeSingleString(file_path, 6), makeSingleString(file_path, 4)):.2f}%")
     
 
 def makeSingleString(file_path, input1):
@@ -68,10 +69,13 @@ def getDiff(gene1, gene2):
     gene2 = Seq(gene2)
 
     alignments = pairwise2.align.globalxx(gene1, gene2)
+    #aligner = PairwiseAligner()
+    #score = aligner.score(gene1, gene2)
 
     similarity_rate = (alignments[0].score / max(len(gene1), len(gene2))) * 100
 
     return similarity_rate
+    #return score / max(len(gene1), len(gene2)) * 100
     
 if __name__ == "__main__":
     main()
