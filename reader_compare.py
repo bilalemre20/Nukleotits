@@ -1,11 +1,11 @@
-from Bio import pairwise2
+#from Bio import pairwise2
 from Bio.Seq import Seq
-#from Bio.Align import PairwiseAligner
+from Bio.Align import PairwiseAligner
 
 def main():
     file_path = "cds_from_genomic.fna"
     #getDiff(file_path, makeSingleString(file_path, 3), makeSingleString(file_path, 4), 0, 0, False)
-    print(f"Similarity rate: {getDiff(makeSingleString(file_path, 6), makeSingleString(file_path, 4)):.2f}%")
+    print(f"Similarity rate: {getDiff(makeSingleString(file_path, 2), makeSingleString(file_path, 6)):.2f}%")
     
 
 def makeSingleString(file_path, input1):
@@ -19,12 +19,13 @@ def makeSingleString(file_path, input1):
                 if input1 == cycle:
                     nextGenom = 1
                     whole_line = ""
-                    while lines[lines.index(line) + nextGenom].find(">lcl") == -1:
+                    while True:
                         if lines[lines.index(line) + nextGenom].find(">lcl") != -1:
-                            break
+                            file.close
+                            return whole_line
                         whole_line = whole_line + lines[lines.index(line) + nextGenom].replace('\n', '')
                         nextGenom += 1
-                cycle = cycle + 1
+                cycle += 1
     file.close
     return whole_line
 
@@ -65,17 +66,19 @@ def makeSingleString(file_path, input1):
             input1.replace(input1[0], '', 1)
             
 def getDiff(gene1, gene2):
-    gene1 = Seq(gene1)
-    gene2 = Seq(gene2)
+    gene1obj = Seq(gene1)
+    gene2obj = Seq(gene2)
 
-    alignments = pairwise2.align.globalxx(gene1, gene2)
-    #aligner = PairwiseAligner()
-    #score = aligner.score(gene1, gene2)
+    #alignments = pairwise2.align.globalxx(gene1, gene2)
+    aligner = PairwiseAligner()
+    score = aligner.score(gene1obj, gene2obj)
+    alignments = aligner.align(gene1obj, gene2obj)
 
-    similarity_rate = (alignments[0].score / max(len(gene1), len(gene2))) * 100
+    #similarity_rate = (alignments[0].score / max(len(gene1), len(gene2))) * 100
 
-    return similarity_rate
-    #return score / max(len(gene1), len(gene2)) * 100
+    #return similarity_rate
+    print(alignments[0])
+    return score / max(len(gene1obj), len(gene2obj)) * 100
     
 if __name__ == "__main__":
     main()
