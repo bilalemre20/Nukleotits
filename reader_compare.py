@@ -1,6 +1,7 @@
 #from Bio import pairwise2
 from Bio.Seq import Seq
 from Bio.Align import PairwiseAligner
+from Bio import SeqIO
 
 def main():
     file_path = "cds_from_genomic.fna"
@@ -66,8 +67,10 @@ def makeSingleString(file_path, input1):
             input1.replace(input1[0], '', 1)
             
 def getDiff(gene1no, gene2no, file_path):
-    gene1obj = Seq(makeSingleString(file_path, gene1no))
-    gene2obj = Seq(makeSingleString(file_path, gene2no))
+    #gene1obj = Seq(makeSingleString(file_path, gene1no))
+    #gene2obj = Seq(makeSingleString(file_path, gene2no))
+    gene1obj = SeqIO.read("gene1.fna", "fasta")
+    gene2obj = SeqIO.read("gene2.fna", "fasta")
 
     #alignments = pairwise2.align.globalxx(gene1, gene2)
     aligner = PairwiseAligner()
