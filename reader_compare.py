@@ -1,3 +1,6 @@
+#This code will let you read fna formated fasta files and compare 2 locations of your choosing
+#Gene numbers are based on the reference placings from the file so in order to get the placing numbers of your search, you will have to use the functions from reader_search code
+
 from Bio.Seq import Seq
 from Bio.Align import PairwiseAligner
 from Bio import SeqIO
@@ -6,7 +9,6 @@ def main():
     file_path = "cds_from_genomic.fna"
     print(f"Similarity rate: {getDiff(3, 65, file_path, True):.2f}%")
     
-
 def getTheGene(file_path, input, getReference):
     reqGene = "Not filled yet"
     nextGenom = 1
