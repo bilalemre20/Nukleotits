@@ -10,7 +10,7 @@ def search_str(file_path, word):
     rval = 0
     with open(file_path, 'r') as file:
         lines = file.readlines()
-        rval = 0
+        rval = 1
         for line in lines:
             if line.find(">lcl") != -1:
                 rval = rval + 1
