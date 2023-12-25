@@ -39,7 +39,7 @@ def printAllCategories(file_path):
     file.close
     
 def printCategories(file_path, num):
-    counter1 = 0
+    counter1 = 1
     code1 = ""
     gene = ""
     db_xref = ""
@@ -47,7 +47,7 @@ def printCategories(file_path, num):
     protein_id = ""
     location = ""
     gbkey = ""
-    cycle = 0
+    cycle = 1
     with open(file_path, 'r') as file:
         lines = file.readlines()
         for line in lines:

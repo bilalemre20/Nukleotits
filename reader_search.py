@@ -10,13 +10,13 @@ def search_str(file_path, word):
     rval = 0
     with open(file_path, 'r') as file:
         lines = file.readlines()
-        rval = 1
+        rval = 0
         for line in lines:
             if line.find(">lcl") != -1:
                 rval = rval + 1
             if line.find(word) != -1 and con == "y":
-                print(word, 'gene exists in file')
-                print('Line Number:', lines.index(line))
+                print(word, 'exists in file')
+                print('Line Number:', lines.index(line) + 1)
                 print('Line:', line)
                 nextGenom = 1
                 while lines[lines.index(line) + nextGenom].find(">lcl") == -1:
