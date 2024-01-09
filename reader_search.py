@@ -2,14 +2,16 @@ def main():
     thingToSearch = input("What are you looking for in the database? ")
     #thingToSearch = "gene=SLC6A9"
     file_path = "cds_from_genomic.fna"
-    search_str(file_path, thingToSearch, 21, "output1")
+    print(search_str(file_path, thingToSearch, 21, "output1", True))
 
-def search_str(file_path, word, chrosomeNo, fileName):
+def search_str(file_path, word, chrosomeNo, fileName, wholeGenes):
     con = "y"
     nextGenom = 1
     rval = 0
     geneToSave = ""
     chrosomeSearch = ""
+    if wholeGenes:
+        rlist = []
     if chrosomeNo < 10:
         chrosomeSearch = '0' + str(chrosomeNo)
     with open(file_path, 'r') as file:
@@ -30,15 +32,21 @@ def search_str(file_path, word, chrosomeNo, fileName):
                     if lines[lines.index(line) + nextGenom].find(">lcl|NC_0000" + chrosomeSearch) != -1:
                         break
                     nextGenom += 1
-                con = input("Print more results (y/n): ")
-            if con == "n":
-                if fileName != "":
-                    file.close
-                    fileName += ".fna"
-                    with open(fileName, 'w') as file:
-                        file.write(geneToSave)
-                break
+                if not wholeGenes:
+                    con = input("Print more results (y/n): ")
+                    if con == "n":
+                        if fileName != "":
+                            file.close
+                            fileName += ".fna"
+                            with open(fileName, 'w') as file:
+                                file.write(geneToSave)
+                        break
+                else:
+                    rlist.append(rval)
+                    
     file.close
+    if wholeGenes:
+        return rlist
     return rval
 
 if __name__ == "__main__":
